@@ -39,7 +39,10 @@ export const createProfile =
         payload: res.data,
       });
 
-      dispatch(setAlert(edit ? "Profilo Aggiornato" : "Profilo creato"));
+      dispatch(
+        setAlert(edit ? "Profilo Aggiornato" : "Profilo creato"),
+        "success"
+      );
 
       //redirect
       if (!edit) {

@@ -2,10 +2,13 @@ import axios from "axios";
 import { setAlert } from "./alert.action";
 import {
   GET_PROFILE,
+  GET_PROFILES,
+  GET_REPOS,
   PROFILE_ERROR,
   UPDATE_PROFILE,
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
+  FILTER_PROFILE,
 } from "./types.action";
 
 //GET CURRENT USER PROFILE
@@ -29,6 +32,73 @@ export const getCurrentProfile = () => async (dispatch) => {
   }
 };
 
+// GET All profile
+
+export const getProfiles = () => async (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
+
+  try {
+    const res = await axios.get("api/profile");
+    dispatch({
+      type: GET_PROFILES,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+//FILTER PROFILE BY STATUS
+
+export const filterProfileByStatus =
+  (status = "Tutti") =>
+  (dispatch) => {
+    dispatch({ type: FILTER_PROFILE, payload: status });
+  };
+
+// GET PROFILE BY ID
+export const getProfileById = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`api/profile/user/${userId}`);
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+// GET GITHUB REPOs profile
+export const getGithubRepo = (username) => async (dispatch) => {
+  try {
+    const res = await axios.get(`api/profile/github/${username}`);
+    dispatch({
+      type: GET_REPOS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
 // Create or update profile
 export const createProfile =
   (formData, history, edit = false) =>
@@ -141,6 +211,7 @@ export const addEducation = (formData, history) => async (dispatch) => {
   }
 };
 
+//delete experience
 export const deleteExperience = (id) => async (dispatch) => {
   try {
     const res = await axios.delete(`api/profile/experience/${id}`);
@@ -163,6 +234,8 @@ export const deleteExperience = (id) => async (dispatch) => {
     });
   }
 };
+
+//delete education
 export const deleteEducation = (id) => async (dispatch) => {
   try {
     const res = await axios.delete(`api/profile/education/${id}`);
@@ -190,7 +263,7 @@ export const deleteEducation = (id) => async (dispatch) => {
 export const deleteAccount = () => async (dispatch) => {
   if (window.confirm("Sei sicuro di voler eliminare il tuo account ? ")) {
     try {
-      const res = await axios.delete(`api/profile`);
+      await axios.delete(`api/profile`);
       dispatch({
         type: CLEAR_PROFILE,
       });

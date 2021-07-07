@@ -1,8 +1,11 @@
 import {
   GET_PROFILE,
+  GET_PROFILES,
+  GET_REPOS,
   PROFILE_ERROR,
   CLEAR_PROFILE,
   UPDATE_PROFILE,
+  FILTER_PROFILE,
 } from "../actions/types.action";
 
 const initialState = {
@@ -11,6 +14,7 @@ const initialState = {
   repos: [],
   loading: true,
   error: {},
+  filteredProfiles: [],
 };
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = initialState, action) {
@@ -21,6 +25,18 @@ export default function (state = initialState, action) {
       return {
         ...state,
         profile: payload,
+        loading: false,
+      };
+    case GET_PROFILES:
+      return {
+        ...state,
+        profiles: payload,
+        loading: false,
+      };
+    case GET_REPOS:
+      return {
+        ...state,
+        repos: payload,
         loading: false,
       };
     case PROFILE_ERROR:
@@ -34,6 +50,15 @@ export default function (state = initialState, action) {
         ...state,
         profile: null,
         repos: [],
+        loading: false,
+      };
+    case FILTER_PROFILE:
+      return {
+        ...state,
+        filteredProfiles:
+          payload === "Tutti"
+            ? state.profiles
+            : state.profiles.filter((item) => item.status === payload),
         loading: false,
       };
 

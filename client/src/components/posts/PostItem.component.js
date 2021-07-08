@@ -11,11 +11,6 @@ const PostItem = ({
   post: { _id, text, name, avatar, user, likes, comments, date },
   auth,
 }) => {
-  const iPutLike = (arr, x) => {
-    const liked = arr.some((item) => item[user] === x);
-    return liked;
-  };
-
   return (
     <div className="post bg-white p-1 my-1">
       <div>
@@ -30,19 +25,32 @@ const PostItem = ({
           Postato il <Moment format="DD/MM/YYYY HH:mm">{date}</Moment>
         </p>
         <button
-          onClick={(e) => addLike(_id)}
+          onClick={() => addLike(_id)}
           type="button"
           className="btn btn-light"
         >
-          <i className="fas fa-thumbs-up"></i>
-          {likes.length > 0 && <span>{likes.length}</span>}
-
-          {likes.length > 0 &&
-            !auth.loading &&
-            console.log(iPutLike(likes, auth.user._id))}
+          {!auth.loading ? (
+            <i
+              className={
+                likes.some((e) => e.user === auth.user._id)
+                  ? "fas fa-thumbs-up text-primary"
+                  : "fas fa-thumbs-up"
+              }
+            >
+              {" "}
+              {likes.length > 0 && <span>{likes.length}</span>}
+            </i>
+          ) : null}
         </button>
         <button
-          onClick={(e) => removeLike(_id)}
+          disabled={
+            !auth.loading
+              ? likes.some((e) => e.user === auth.user._id)
+                ? false
+                : true
+              : false
+          }
+          onClick={() => removeLike(_id)}
           type="button"
           className="btn btn-light"
         >

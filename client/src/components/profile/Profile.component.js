@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner.component";
 import ProfileTop from "./ProfileTop.component";
 import ProfileAbout from "./ProfileAbout.component";
+import ProfileExperience from "./ProfileExperience.component";
+import ProfileEducation from "./ProfileEducation.component";
 import { getProfileById } from "../../actions/profile.action";
 
 const Profile = ({
@@ -39,6 +41,32 @@ const Profile = ({
           <div className="profile-grid my-1">
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
+            <div className="profile-exp bg-white p-2">
+              <h2 className="text-primary">Esperienze</h2>
+              {profile.experience.length > 0 ? (
+                <>
+                  {profile.experience.map((exp) => {
+                    console.log(exp);
+                    return <ProfileExperience key={exp._id} experience={exp} />;
+                  })}
+                </>
+              ) : (
+                <h4>Nessuna esperienza inserita</h4>
+              )}
+            </div>
+            <div className="profile-edu bg-white p-2">
+              <h2 className="text-primary">Formazione</h2>
+              {profile.education.length > 0 ? (
+                <>
+                  {profile.education.map((edu) => {
+                    console.log(edu);
+                    return <ProfileEducation key={edu._id} education={edu} />;
+                  })}
+                </>
+              ) : (
+                <h4>Nessuna esperienza inserita</h4>
+              )}
+            </div>
           </div>
         </>
       )}

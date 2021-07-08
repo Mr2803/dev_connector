@@ -16,7 +16,6 @@ Alert.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.alert);
   return { alerts: state.alert };
 };
 

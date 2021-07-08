@@ -11,6 +11,11 @@ const PostItem = ({
   post: { _id, text, name, avatar, user, likes, comments, date },
   auth,
 }) => {
+  const iPutLike = (arr, x) => {
+    const liked = arr.some((item) => item[user] === x);
+    return liked;
+  };
+
   return (
     <div className="post bg-white p-1 my-1">
       <div>
@@ -31,6 +36,10 @@ const PostItem = ({
         >
           <i className="fas fa-thumbs-up"></i>
           {likes.length > 0 && <span>{likes.length}</span>}
+
+          {likes.length > 0 &&
+            !auth.loading &&
+            console.log(iPutLike(likes, auth.user._id))}
         </button>
         <button
           onClick={(e) => removeLike(_id)}

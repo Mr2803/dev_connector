@@ -328,6 +328,15 @@ router.get("/github/:username", (req, res) => {
         return res.status(404).json({ msg: "Nessun profilo github trovato" });
       }
 
+      // const bodyParser = JSON.parse(body);
+
+      // const profileImage = {
+      //   profile_img: `https://api.github.com/${req.params.username}`,
+      // };
+
+      // const finalObj = Object.assign(bodyParser, profileImage);
+      // console.log(finalObj);
+
       res.json(JSON.parse(body));
     });
   } catch (error) {

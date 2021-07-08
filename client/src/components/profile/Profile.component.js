@@ -47,7 +47,6 @@ const Profile = ({
               {profile.experience.length > 0 ? (
                 <>
                   {profile.experience.map((exp) => {
-                    console.log(exp);
                     return <ProfileExperience key={exp._id} experience={exp} />;
                   })}
                 </>
@@ -60,7 +59,6 @@ const Profile = ({
               {profile.education.length > 0 ? (
                 <>
                   {profile.education.map((edu) => {
-                    console.log(edu);
                     return <ProfileEducation key={edu._id} education={edu} />;
                   })}
                 </>

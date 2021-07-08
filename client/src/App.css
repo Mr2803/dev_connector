@@ -453,6 +453,10 @@ button {
   flex-basis: 20%;
 }
 
+.profile-github-image {
+  width: 150px;
+}
+
 /* Posts Page */
 .post-form .post-form-header {
   background: var(--primary-color);

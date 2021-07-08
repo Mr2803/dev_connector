@@ -9,7 +9,6 @@ const ProfileAbout = ({
     user: { name },
   },
 }) => {
-  console.log(skills);
   const skill = skills.map((skill, index) => (
     <div className="p-1" key={index}>
       <i className="fa fa-check"></i> {capitalize(skill)}

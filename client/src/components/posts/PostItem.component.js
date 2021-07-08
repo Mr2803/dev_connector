@@ -48,7 +48,7 @@ const PostItem = ({
               ? likes.some((e) => e.user === auth.user._id)
                 ? false
                 : true
-              : false
+              : true
           }
           onClick={() => removeLike(_id)}
           type="button"

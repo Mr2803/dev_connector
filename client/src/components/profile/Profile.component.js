@@ -7,6 +7,7 @@ import ProfileTop from "./ProfileTop.component";
 import ProfileAbout from "./ProfileAbout.component";
 import ProfileExperience from "./ProfileExperience.component";
 import ProfileEducation from "./ProfileEducation.component";
+import ProfileGithub from "./ProfileGithub.component";
 import { getProfileById } from "../../actions/profile.action";
 
 const Profile = ({
@@ -67,6 +68,9 @@ const Profile = ({
                 <h4>Nessuna esperienza inserita</h4>
               )}
             </div>
+            {profile.githubusername && (
+              <ProfileGithub username={profile.githubusername} />
+            )}
           </div>
         </>
       )}

@@ -53,6 +53,7 @@ export default function (state = initialState, action) {
         repos: [],
         loading: false,
       };
+
     case FILTER_PROFILE:
       return {
         ...state,

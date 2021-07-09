@@ -119,13 +119,6 @@ export const createProfile =
         setAlert(edit ? "Profilo Aggiornato" : "Profilo creato", "success")
       );
 
-      if (edit)
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: "smooth",
-        });
-
       //redirect
       if (!edit) {
         history.push("/dashboard");

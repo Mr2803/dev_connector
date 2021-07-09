@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addComment, deleteComment } from "../../actions/post.action";
+import { addComment } from "../../actions/post.action";
 
 const CommentForm = ({ addComment, deleteComment, postId }) => {
   const [text, setText] = useState("");
@@ -35,8 +35,7 @@ const CommentForm = ({ addComment, deleteComment, postId }) => {
 
 CommentForm.propTypes = {
   addComment: PropTypes.func.isRequired,
-  deleteComment: PropTypes.func.isRequired,
   postId: PropTypes.string.isRequired,
 };
 
-export default connect(null, { addComment, deleteComment })(CommentForm);
+export default connect(null, { addComment })(CommentForm);

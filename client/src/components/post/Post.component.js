@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner.component";
 import PostItem from "../posts/PostItem.component";
 import CommentForm from "./CommentForm.component";
+import CommentItem from "./CommentItem.component";
 import { getPost } from "../../actions/post.action";
 
 const Post = ({ getPost, match, post: { post, loading } }) => {
@@ -22,6 +23,17 @@ const Post = ({ getPost, match, post: { post, loading } }) => {
       </Link>
       <PostItem post={post} showActions={false} />
       <CommentForm postId={post._id} />
+      <div className="comments">
+        {post.comments.map((comment) => {
+          return (
+            <CommentItem
+              key={comment._id}
+              comment={comment}
+              postId={post._id}
+            />
+          );
+        })}
+      </div>
     </>
   );
 };

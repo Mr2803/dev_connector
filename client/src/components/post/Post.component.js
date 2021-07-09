@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner.component";
 import PostItem from "../posts/PostItem.component";
+import CommentForm from "./CommentForm.component";
 import { getPost } from "../../actions/post.action";
 
 const Post = ({ getPost, match, post: { post, loading } }) => {
@@ -20,6 +21,7 @@ const Post = ({ getPost, match, post: { post, loading } }) => {
         Ritorna a tutti i post
       </Link>
       <PostItem post={post} showActions={false} />
+      <CommentForm postId={post._id} />
     </>
   );
 };

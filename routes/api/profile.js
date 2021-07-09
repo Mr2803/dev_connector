@@ -87,7 +87,7 @@ router.post(
     if (facebook) profileFields.social.facebook = facebook;
     if (instagram) profileFields.social.instagram = instagram;
     if (linkedin) profileFields.social.linkedin = linkedin;
-    console.log(profileFields.social);
+
     try {
       let profile = await Profile.findOne({ user: req.user.id });
       if (profile) {
@@ -327,15 +327,6 @@ router.get("/github/:username", (req, res) => {
       if (response.statusCode !== 200) {
         return res.status(404).json({ msg: "Nessun profilo github trovato" });
       }
-
-      // const bodyParser = JSON.parse(body);
-
-      // const profileImage = {
-      //   profile_img: `https://api.github.com/${req.params.username}`,
-      // };
-
-      // const finalObj = Object.assign(bodyParser, profileImage);
-      // console.log(finalObj);
 
       res.json(JSON.parse(body));
     });

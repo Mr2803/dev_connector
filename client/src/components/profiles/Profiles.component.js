@@ -21,8 +21,6 @@ const Profiles = ({
     ...new Set(profiles.map((profile) => profile.status)),
   ];
 
-  console.log("PROFILES ===> ", filteredProfiles);
-
   return (
     <>
       {loading ? (
@@ -33,7 +31,6 @@ const Profiles = ({
             name="status"
             id=""
             onChange={(val) => {
-              console.log(val.target.value);
               filterProfileByStatus(val.target.value);
             }}
           >

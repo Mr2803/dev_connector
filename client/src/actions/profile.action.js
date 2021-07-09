@@ -15,7 +15,6 @@ import {
 
 export const getCurrentProfile = () => async (dispatch) => {
   try {
-    console.log(localStorage.token);
     const res = await axios.get("/api/profile/me");
     dispatch({
       type: GET_PROFILE,

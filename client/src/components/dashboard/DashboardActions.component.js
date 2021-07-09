@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const DashboardActions = ({ user: { _id } }) => {
-  console.log(_id);
   return (
     <div className="dash-buttons">
       <Link to="/edit-profile" className="btn btn-light">

@@ -86,7 +86,6 @@ router.get("/user/posts", auth, async (req, res) => {
     }
     res.json(posts);
   } catch (err) {
-    console.log(err);
     res.status(500).send("Something went wrong, check logs");
   }
 });
@@ -218,7 +217,6 @@ router.post(
 router.delete("/comment/:id/:comment_id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
-    console.log(post);
 
     // Pull out comment
     const comment = post.comments.find(
